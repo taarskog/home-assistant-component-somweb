@@ -1,0 +1,22 @@
+{
+    "config": {
+        "abort": {
+            "already_configured": "Device is already configured"
+        },
+        "error": {
+            "invalid_udi": "Invalid UDI (see back of SOMweb device)",
+            "cannot_connect": "Failed to connect",
+            "invalid_auth": "Invalid authentication",
+            "unknown": "Unexpected error"
+        },
+        "step": {
+            "user": {
+                "data": {
+                    "id": "UDI",
+                    "password": "Password",
+                    "username": "Username"
+                }
+            }
+        }
+    }
+}

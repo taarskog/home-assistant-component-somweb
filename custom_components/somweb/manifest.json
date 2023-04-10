@@ -1,0 +1,16 @@
+{
+    "domain": "somweb",
+    "name": "SOMweb (for Sommer garage doors)",
+    "config_flow": true,
+    "documentation": "https://github.com/taarskog/home-assistant-component-somweb",
+    "issue_tracker": "https://github.com/taarskog/home-assistant-component-somweb/issues",
+    "requirements": ["somweb==1.1.2"],
+    "integration_type": "device",
+    "ssdp": [],
+    "zeroconf": [],
+    "homekit": {},
+    "dependencies": [],
+    "codeowners": ["@taarskog"],
+    "iot_class": "local_polling",
+    "version": "1.0.0"
+}
