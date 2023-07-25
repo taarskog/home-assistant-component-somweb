@@ -1,5 +1,7 @@
 # Somweb
 
+[![Open your Home Assistant instance to install Somweb through HACS.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=taarskog&repository=home-assistant-component-somweb&category=integration)
+
 [![GitHub Release][releases-shield]][releases]
 [![hacs][hacsbadge]][hacs]
 
@@ -25,17 +27,25 @@ Platform | Description
 
 ## Installation
 
+### With HACS
+
+1. Click [here](https://my.home-assistant.io/redirect/hacs_repository/?owner=taarskog&repository=home-assistant-component-somweb&category=integration) to open this repo in HACS on your Home Assistant instance.
+1. Click install.
+1. Restart Home Assistant.
+
+### Manually
+
 1. Using the tool of choice open the directory (folder) for your HA configuration (where you find `configuration.yaml`).
 1. If you do not have a `custom_components` directory (folder) there, you need to create it.
 1. In the `custom_components` directory (folder) create a new folder called `somweb`.
 1. Download _all_ the files from the `custom_components/somweb/` directory (folder) in this repository.
 1. Place the files you downloaded in the new directory (folder) you created.
 1. Restart Home Assistant
-1. In the HA UI go to "Configuration" -> "Integrations" click "+" and search for "Somweb"
 
 ## Configuration
 
-... is done in the UI
+1. Click [![Open your Home Assistant instance and start setting up a new integration.](https://my.home-assistant.io/badges/config_flow_start.svg)](https://my.home-assistant.io/redirect/config_flow_start/?domain=somweb) or in the HA UI go to "Configuration" -> "Integrations" click "+" and search for "Somweb".
+1. Input uuid, username, and password
 
 <!---->
 
