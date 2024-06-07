@@ -1,6 +1,6 @@
 {
     "name": "taarskog/home-assistant-component-somweb",
-    "image": "mcr.microsoft.com/vscode/devcontainers/python:0-3.10-bullseye",
+    "image": "mcr.microsoft.com/vscode/devcontainers/python:0-3.12-bullseye",
     "postCreateCommand": "scripts/setup",
     "forwardPorts": [
         8123
@@ -24,8 +24,6 @@
                 "editor.tabSize": 4,
                 "python.pythonPath": "/usr/bin/python3",
                 "python.analysis.autoSearchPaths": false,
-                "python.linting.pylintEnabled": true,
-                "python.linting.enabled": true,
                 "python.formatting.provider": "black",
                 "python.formatting.blackPath": "/usr/local/py-utils/bin/black",
                 "editor.formatOnPaste": false,
