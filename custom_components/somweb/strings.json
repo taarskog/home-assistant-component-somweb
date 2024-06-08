@@ -3,20 +3,38 @@
         "step": {
             "user": {
                 "data": {
+                    "mode": "Device Access Mode",
                     "id": "UDI",
+                    "url": "URL",
                     "username": "[%key:common::config_flow::data::username%]",
                     "password": "[%key:common::config_flow::data::password%]"
+                },
+                "data_description": {
+                    "mode": "Access device through SOMweb cloud services or directly using static IP or FQDN",
+                    "id": "SOMweb device id found on the device (required for cloud mode)",
+                    "url": "URL to SOMweb device (required for local mode)",
+                    "username": "[%key:common::config_flow::data_description::username%]",
+                    "password": "[%key:common::config_flow::data_description::password%]"
                 }
             }
         },
         "error": {
-            "invalid_udi": "Invalid UDI (see back of SOMweb device)",
+            "invalid_udi": "Invalid UDI (see back of SOMweb device - not required for local)",
+            "invalid_url": "Invalid URL (must be set for local access)",
             "cannot_connect": "[%key:common::config_flow::error::cannot_connect%]",
             "invalid_auth": "[%key:common::config_flow::error::invalid_auth%]",
             "unknown": "[%key:common::config_flow::error::unknown%]"
         },
         "abort": {
             "already_configured": "[%key:common::config_flow::abort::already_configured_device%]"
+        }
+    },
+    "selector": {
+        "mode": {
+            "options": {
+                "local": "Local",
+                "cloud": "Cloud"
+            }
         }
     }
 }

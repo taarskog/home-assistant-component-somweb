@@ -4,7 +4,8 @@
             "already_configured": "Enheten er allerede konfigurert"
         },
         "error": {
-            "invalid_udi": "Ugyldig UDI (se bak p\u00e5 SOMweb enheten)",
+            "invalid_udi": "Ugyldig UDI (se bak p\u00e5 SOMweb enheten - m\u00e5 settes for sky)",
+            "invalid_url": "Ugyldig URL (m\u00e5 settes for lokal aksess)",
             "cannot_connect": "Tilkobling mislyktes",
             "invalid_auth": "Ugyldig godkjenning",
             "unknown": "Uventet feil"
@@ -12,10 +13,25 @@
         "step": {
             "user": {
                 "data": {
+                    "mode": "Aksess",
                     "id": "UDI",
+                    "url": "URL",
                     "password": "Passord",
                     "username": "Brukernavn"
+                },
+                "data_description": {
+                    "mode": "N\u00e5 enheten via SOMweb skytjeneste eller direkte via lokal statisk IP eller DNS-navn",
+                    "id": "SOMweb-enhetens ID funnet p\u00e5 enheten (obligatorisk for sky-modus)",
+                    "url": "URL til SOMweb-enhet (obligatorisk for lokal modus)"
                 }
+            }
+        }
+    },
+    "selector": {
+        "mode": {
+            "options": {
+                "local": "Direkte",
+                "cloud": "Sky"
             }
         }
     }

@@ -11,7 +11,7 @@ import logging
 from somweb import SomwebClient
 
 from homeassistant.config_entries import ConfigEntry
-from homeassistant.const import CONF_ID, CONF_PASSWORD, CONF_USERNAME
+from homeassistant.const import CONF_ID, CONF_PASSWORD, CONF_USERNAME, CONF_URL
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers import aiohttp_client
 
@@ -29,13 +29,22 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     username = config[CONF_USERNAME]
     password = config[CONF_PASSWORD]
     somweb_udi = config[CONF_ID]
+    somweb_url = config[CONF_URL]
 
-    somweb_client = SomwebClient(
-        somweb_udi, username, password, aiohttp_client.async_get_clientsession(hass)
-    )
+    if (somweb_url is None):
+        _LOGGER.debug("Cloud login with UDI '%s'", somweb_udi)
+        somweb_client = SomwebClient.createUsingUdi(somweb_udi, username, password, aiohttp_client.async_get_clientsession(hass))
+    else:
+        _LOGGER.debug("Local or Cloud login with URL '%s'", somweb_url)
+        somweb_client = SomwebClient(somweb_url, username, password, aiohttp_client.async_get_clientsession(hass)
+        )
 
     while not await somweb_client.is_alive():
-        _LOGGER.error("Device with UDI '%s' not found on this network", somweb_udi)
+        _LOGGER.error(
+            "Device with UDI '%s' and URL '%s' not found on this network. Make sure that at least one of these values are set (if bot are set URL will override UDI)",
+            somweb_udi,
+            somweb_url
+        )
         await asyncio.sleep(ALIVE_RETRY_INTERVAL_SECONDS)
 
     auth_result = await somweb_client.authenticate()
@@ -64,3 +73,23 @@ async def async_reload_entry(hass: HomeAssistant, entry: ConfigEntry) -> None:
     _LOGGER.info("Reloading somweb...")
     await async_unload_entry(hass, entry)
     await async_setup_entry(hass, entry)
+
+
+async def async_migrate_entry(hass, config_entry: ConfigEntry):
+    """Migrate old entry."""
+    _LOGGER.debug("Migrating configuration from version %s.%s", config_entry.version, config_entry.minor_version)
+
+    if config_entry.version == 1:
+
+        new_data = {**config_entry.data}
+        if config_entry.minor_version < 2:
+            new_data[CONF_URL] = None
+            pass
+
+        # Set new config version
+        hass.config_entries.async_update_entry(config_entry, data=new_data, minor_version=2, version=1)
+
+    _LOGGER.debug("Migration to configuration version %s.%s successful", config_entry.version, config_entry.minor_version)
+
+    return True
+
