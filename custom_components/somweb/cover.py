@@ -9,8 +9,7 @@ import voluptuous as vol
 
 from homeassistant.components.cover import (
     PLATFORM_SCHEMA,
-    SUPPORT_CLOSE,
-    SUPPORT_OPEN,
+    CoverEntityFeature,
     CoverDeviceClass,
     CoverEntity,
 )
@@ -125,7 +124,7 @@ class SomwebDoor(CoverEntity):
     @property
     def supported_features(self) -> int:
         """Return supported features."""
-        return SUPPORT_OPEN | SUPPORT_CLOSE
+        return CoverEntityFeature.OPEN | CoverEntityFeature.CLOSE
 
     async def async_open_cover(self, **kwargs) -> None:  # type: ignore
         """Open the cover."""
