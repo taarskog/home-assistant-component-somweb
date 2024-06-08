@@ -25,8 +25,18 @@ _Custom component for Home Assistant to manage garage doors and gates by [Sommer
 
 ## Configuration
 
-1. [![Add Integration][add-integration-badge]][add-integration] or in the HA UI go to "Configuration" -> "Integrations" click "+" and search for "Somweb".
-1. Input uuid, username, and password
+[![Add Integration][add-integration-badge]][add-integration]
+
+or in the HA UI go to "Configuration" -> "Integrations" click "+" and search for "Somweb".
+
+**Fill** inn the fields specifying UDI or URL based on the chosen access mode.
+
+**Submit** and you are done!
+
+### Access Modes
+- **Cloud Access:** The integration can use SOMweb cloud services. The required UDI number is printed on the back of the SOMweb device
+
+- **Local Access:** Use Local access if your SOMweb device has a static IP or can be accessed using a FQDN. In this mode internet access is not required.
 
 
 ## Acknowledgements

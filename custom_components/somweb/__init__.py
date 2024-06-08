@@ -35,7 +35,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         _LOGGER.debug("Cloud login with UDI '%s'", somweb_udi)
         somweb_client = SomwebClient.createUsingUdi(somweb_udi, username, password, aiohttp_client.async_get_clientsession(hass))
     else:
-        _LOGGER.debug("Local or Cloud login with URL '%s'", somweb_url)
+        _LOGGER.debug("Local login with URL '%s'", somweb_url)
         somweb_client = SomwebClient(somweb_url, username, password, aiohttp_client.async_get_clientsession(hass)
         )
 

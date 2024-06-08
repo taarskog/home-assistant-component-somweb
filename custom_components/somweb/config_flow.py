@@ -24,7 +24,7 @@ STEP_USER_DATA_SCHEMA = vol.Schema(
     {
         vol.Required(CONF_MODE): selector.SelectSelector(
             selector.SelectSelectorConfig(
-                options=[MODE_LOCAL, MODE_CLOUD],
+                options=[MODE_CLOUD, MODE_LOCAL],
                 translation_key= MODE_TRANSLATION_KEY
             )
         ),

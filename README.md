@@ -44,14 +44,18 @@ Platform | Description
 
 ## Configuration
 
-1. Click [![Open your Home Assistant instance and start setting up a new integration.](https://my.home-assistant.io/badges/config_flow_start.svg)](https://my.home-assistant.io/redirect/config_flow_start/?domain=somweb) or in the HA UI go to "Configuration" -> "Integrations" click "+" and search for "Somweb".
-1. Input uuid, username, and password
+[![Open your Home Assistant instance and start setting up a new integration.](https://my.home-assistant.io/badges/config_flow_start.svg)](https://my.home-assistant.io/redirect/config_flow_start/?domain=somweb)
 
-<!---->
+or in the HA UI go to "Configuration" -> "Integrations" click "+" and search for "Somweb".
 
-<!-- ## Contributions are welcome!
+**Fill** inn the fields specifying UDI or URL based on the chosen access mode.
 
-If you want to contribute to this please read the [Contribution guidelines](CONTRIBUTING.md) -->
+**Submit** and you are done!
+
+### Access Modes
+- **Cloud Access:** The integration can use SOMweb cloud services. The required UDI number is printed on the back of the SOMweb device
+
+- **Local Access:** Use Local access if your SOMweb device has a static IP or can be accessed using a FQDN. In this mode internet access is not required.
 
 ## Acknowledgements
 

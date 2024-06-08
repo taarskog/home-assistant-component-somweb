@@ -7,7 +7,7 @@
             "invalid_udi": "Ugyldig UDI (se bak p\u00e5 SOMweb enheten - m\u00e5 settes for sky)",
             "invalid_url": "Ugyldig URL (m\u00e5 settes for lokal aksess)",
             "cannot_connect": "Tilkobling mislyktes",
-            "invalid_auth": "Ugyldig godkjenning",
+            "invalid_auth": "Ugyldig brukernavn/passord",
             "unknown": "Uventet feil"
         },
         "step": {
