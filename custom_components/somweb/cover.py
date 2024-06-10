@@ -1,23 +1,26 @@
 """SOMweb (for Sommer garage doors) integration."""
+
 from __future__ import annotations
 
 from datetime import timedelta
 import logging
 
-from somweb import Door, DoorStatusType, SomwebClient
+from somweb import Door, DoorStatusType, SomwebClient, DeviceInfo as SomwebDeviceInfo
 import voluptuous as vol
 
 from homeassistant.components.cover import (
     PLATFORM_SCHEMA,
     CoverEntityFeature,
     CoverDeviceClass,
-    CoverEntity,
+    CoverEntity
 )
+
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import CONF_ID, CONF_PASSWORD, CONF_USERNAME
 from homeassistant.core import HomeAssistant
 import homeassistant.helpers.config_validation as cv
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
+from homeassistant.helpers.device_registry import DeviceInfo
 
 from .const import DOMAIN, SCAN_INTERVAL_SECONDS
 
@@ -42,9 +45,11 @@ async def async_setup_entry(
     """Add SOMweb platform for passed config_entry in Home Assistant."""
 
     somweb_client: SomwebClient = hass.data[DOMAIN][config_entry.entry_id]
+    somweb_device_info = None if somweb_client.is_admin is None else await somweb_client.async_get_device_info()
     door_list = somweb_client.get_doors()
 
-    entities = [SomwebDoor(somweb_client, door) for door in door_list]
+    entities = [SomwebDoor(somweb_client, somweb_device_info, door)
+                for door in door_list]
 
     door_count = len(entities)
     _LOGGER.debug("Found %d door%s", door_count, "s" if door_count > 1 else "")
@@ -55,7 +60,7 @@ async def async_setup_entry(
 class SomwebDoor(CoverEntity):
     """Representation of a SOMweb Garage Door (or barrier)."""
 
-    def __init__(self, client: SomwebClient, door: Door) -> None:
+    def __init__(self, client: SomwebClient, somweb_device_info: SomwebDeviceInfo, door: Door) -> None:
         """Initialize SOMweb Door Entity.
 
         :param client: Client to access the SOMweb device
@@ -69,9 +74,27 @@ class SomwebDoor(CoverEntity):
         self._state: DoorStatusType = DoorStatusType.UNKNOWN
         self._is_opening: bool = False
         self._is_closing: bool = False
+        self._device_id: str = f"UDI {client.udi}"
         self._unique_id: str = f"{client.udi}_{door.id}"
         self._available: bool = True
         self._id_in_log = f"'{self._name} ({client.udi}_{door.id})'"
+        self._device_info = somweb_device_info
+
+    @property
+    def device_info(self) -> DeviceInfo:
+        """Return the device info."""
+
+        return DeviceInfo(
+            identifiers={
+                # Serial numbers are unique identifiers within a specific domain
+                (DOMAIN, self._device_id)
+            },
+            name=f"SOMweb UDI {self._device_id}",
+            manufacturer="Sommer",
+            model="SOMweb",
+            # configuration_url=,
+            sw_version=self._device_info.sw_version if self._device_info else None,
+        )
 
     @property
     def unique_id(self) -> str:
@@ -143,7 +166,7 @@ class SomwebDoor(CoverEntity):
     async def __async_refresh_state(self) -> bool:
         """Refresh cover state."""
         try:
-            self._state = await self._client.get_door_status(self._id)
+            self._state = await self._client.async_get_door_status(self._id)
             _LOGGER.debug(
                 "Current state of cover %s is '%s'", self._id_in_log, self._state.name
             )
@@ -165,14 +188,15 @@ class SomwebDoor(CoverEntity):
             self._is_closing = position == DoorStatusType.CLOSED
             self.async_write_ha_state()
 
-            if await self._client.door_action(self._id, position) or (
+            if await self._client.async_door_action(self._id, position) or (
                 # First try failed - re-connect and try again
                 await self.__async_re_connect()
-                and await self._client.door_action(self._id, position)
+                and await self._client.async_door_action(self._id, position)
             ):
-                await self._client.wait_for_door_state(self._id, position)
+                await self._client.async_wait_for_door_state(self._id, position)
             else:
-                _LOGGER.error("Unable to %s cover %s", position.name, self._id_in_log)
+                _LOGGER.error("Unable to %s cover %s",
+                              position.name, self._id_in_log)
 
         except Exception:  # pylint: disable=broad-except
             _LOGGER.exception(
@@ -188,14 +212,15 @@ class SomwebDoor(CoverEntity):
     async def __async_re_connect(self) -> bool:
         """Re-connect to SOMweb device."""
         try:
-            if not await self._client.is_alive():
-                _LOGGER.debug("Somweb with id %s is not alive", self._client.udi)
+            if not await self._client.async_is_alive():
+                _LOGGER.debug("Somweb with id %s is not alive",
+                              self._client.udi)
                 return False
 
             _LOGGER.debug(
                 "Attempting to re-authenticate somweb for cover %s", self._id_in_log
             )
-            auth_result = await self._client.authenticate()
+            auth_result = await self._client.async_authenticate()
             if auth_result.success:
                 _LOGGER.debug(
                     "Successfully re-authenticated somweb for cover %s",
@@ -218,11 +243,13 @@ class SomwebDoor(CoverEntity):
     async def async_update(self, **kwargs) -> None:  # type: ignore
         """Get the latest status from SOMweb."""
         if self.is_opening or self._is_closing:
-            _LOGGER.debug("Skipping update of state while an operation is ongoing")
+            _LOGGER.debug(
+                "Skipping update of state while an operation is ongoing")
         elif not (
             await self.__async_refresh_state()
             or (await self.__async_re_connect() and await self.__async_refresh_state())
         ):
-            _LOGGER.warning("SOMweb seems to be off the grid. Will continue attempts")
+            _LOGGER.warning(
+                "SOMweb seems to be off the grid. Will continue attempts")
 
         self._available = self._state != DoorStatusType.UNKNOWN
