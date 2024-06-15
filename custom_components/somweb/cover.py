@@ -78,7 +78,7 @@ class SomwebDoor(CoverEntity):
         self._unique_id: str = f"{client.udi}_{door.id}"
         self._available: bool = True
         self._id_in_log = f"'{self._name} ({client.udi}_{door.id})'"
-        self._device_info = somweb_device_info
+        self._device_info: SomwebDeviceInfo = somweb_device_info
 
     @property
     def device_info(self) -> DeviceInfo:
@@ -93,7 +93,7 @@ class SomwebDoor(CoverEntity):
             manufacturer="Sommer",
             model="SOMweb",
             # configuration_url=,
-            sw_version=self._device_info.sw_version if self._device_info else None,
+            sw_version=self._device_info.firmware_version if self._device_info else None,
         )
 
     @property
