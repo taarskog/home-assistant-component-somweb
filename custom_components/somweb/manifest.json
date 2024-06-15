@@ -12,7 +12,7 @@
     "iot_class": "local_polling",
     "issue_tracker": "https://github.com/taarskog/home-assistant-component-somweb/issues",
     "requirements": [
-        "somweb==1.3.1"
+        "somweb==1.3.3b0"
     ],
     "ssdp": [],
     "version": "1.0.0",
