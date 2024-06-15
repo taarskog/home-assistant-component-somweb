@@ -78,17 +78,17 @@ async def validate_input(hass: HomeAssistant, data: dict[str, Any]) -> dict[str,
         raise InvalidAuth
 
     if (mode == MODE_LOCAL):
-        _LOGGER.debug("Local login with URL '%s'", udi)
+        _LOGGER.debug("Local login with URL '%s'", url)
         somweb_client = SomwebClient(url, username, password, aiohttp_client.async_get_clientsession(hass))
     else:
         _LOGGER.debug("Cloud login with UDI '%s'", udi)
         somweb_client = SomwebClient.createUsingUdi(udi, username, password, aiohttp_client.async_get_clientsession(hass))
 
     try:
-        if not await somweb_client.is_alive():
+        if not await somweb_client.async_is_alive():
             raise CannotConnect
 
-        if not (await somweb_client.authenticate()).success:
+        if not (await somweb_client.async_authenticate()).success:
             raise InvalidAuth
 
         _LOGGER.debug("Connected to SOMweb device with UDI '%s'", somweb_client.udi)

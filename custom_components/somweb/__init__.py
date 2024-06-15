@@ -17,7 +17,7 @@ from homeassistant.helpers import aiohttp_client
 
 from .const import ALIVE_RETRY_INTERVAL_SECONDS, DOMAIN
 
-PLATFORMS: list[str] = ["cover"]
+PLATFORMS = ["cover"]
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -39,7 +39,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         somweb_client = SomwebClient(somweb_url, username, password, aiohttp_client.async_get_clientsession(hass)
         )
 
-    while not await somweb_client.is_alive():
+    while not await somweb_client.async_is_alive():
         _LOGGER.error(
             "Device with UDI '%s' and URL '%s' not found on this network. Make sure that at least one of these values are set (if bot are set URL will override UDI)",
             somweb_udi,
@@ -47,7 +47,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         )
         await asyncio.sleep(ALIVE_RETRY_INTERVAL_SECONDS)
 
-    auth_result = await somweb_client.authenticate()
+    auth_result = await somweb_client.async_authenticate()
     if not auth_result.success:
         _LOGGER.error("Failed to authenticate (udi=%s)", somweb_udi)
         return False
