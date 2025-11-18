@@ -55,7 +55,7 @@ or in the HA UI go to "Configuration" -> "Integrations" click "+" and search for
 ### Access Modes
 - **Cloud Access:** The integration can use SOMweb cloud services. The required UDI number is printed on the back of the SOMweb device
 
-- **Local Access:** Use Local access if your SOMweb device has a static IP or can be accessed using a FQDN. In this mode internet access is not required.
+- **Local Access:** Use Local access if your SOMweb device has a static IP or can be accessed using a FQDN. In this mode internet access is not required. A valid URL is required so for IP you must prefix with `http://`.
 
 ## Acknowledgements
 
