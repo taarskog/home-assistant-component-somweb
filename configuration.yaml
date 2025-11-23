@@ -1,5 +1,19 @@
 # https://www.home-assistant.io/integrations/default_config/
-default_config:
+#default_config:
+
+homeassistant:
+  name: Dev
+  unit_system: metric
+  time_zone: Europe/Oslo
+
+# 🔹 Kjerne som trengs for UI og utvikling (uten default_config):
+frontend:
+http:
+api:
+websocket_api:
+system_health:
+config:
+
 
 # https://www.home-assistant.io/integrations/logger/
 logger:

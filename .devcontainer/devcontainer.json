@@ -1,6 +1,6 @@
 {
     "name": "taarskog/home-assistant-component-somweb",
-    "image": "mcr.microsoft.com/devcontainers/python:3.12-bullseye",
+    "image": "mcr.microsoft.com/devcontainers/python:3.14-bookworm",
     "postCreateCommand": "scripts/setup",
     "forwardPorts": [
         8123
@@ -17,7 +17,16 @@
                 "ms-python.python",
                 "github.vscode-pull-request-github",
                 "ryanluker.vscode-coverage-gutters",
-                "ms-python.vscode-pylance"
+                "ms-python.vscode-pylance",
+                "charliermarsh.ruff",
+                "njpwerner.autodocstring",
+                "vivaxy.vscode-conventional-commits",
+                "editorconfig.editorconfig",
+                "peterschmalfeldt.explorer-exclude",
+                "github.vscode-github-actions",
+                "ms-vscode.vscode-websearchforcopilot",
+                "github.copilot-chat",
+                "GitHub.copilot"
             ],
             "settings": {
                 "files.eol": "\n",
