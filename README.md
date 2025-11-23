@@ -9,6 +9,7 @@
 <!-- [![License][license-shield]](LICENSE) -->
 
 <!-- ![Project Maintenance][maintenance-shield] -->
+[![Sponsor Me][sponsorbadge]][sponsorme]
 [![BuyMeCoffee][buymecoffeebadge]][buymecoffee]
 [![Donate][paypalmebadge]][paypalme]
 
@@ -65,6 +66,9 @@ or in the HA UI go to "Configuration" -> "Integrations" click "+" and search for
 
 [sommer]: https://www.sommer.eu
 [sommer-somweb]: https://www.sommer.eu/en/somweb.html
+
+[sponsorme]: https://github.com/sponsors/taarskog
+[sponsorbadge]: https://img.shields.io/badge/sponsor%20me-sponsor-blue.svg?style=for-the-badge
 
 [buymecoffee]: https://www.buymeacoffee.com/taarskog
 [buymecoffeebadge]: https://img.shields.io/badge/buy%20me%20a%20coffee-donate-yellow.svg?style=for-the-badge
