@@ -19,7 +19,7 @@ from .const import ALIVE_RETRY_INTERVAL_SECONDS, DOMAIN
 
 PLATFORMS = ["cover"]
 
-_LOGGER = logging.getLogger(__name__)
+LOGGER = logging.getLogger(__name__)
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
@@ -32,15 +32,15 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     somweb_url = config[CONF_URL]
 
     if (somweb_url is None):
-        _LOGGER.debug("Cloud login with UDI '%s'", somweb_udi)
+        LOGGER.debug("Cloud login with UDI '%s'", somweb_udi)
         somweb_client = SomwebClient.createUsingUdi(somweb_udi, username, password, aiohttp_client.async_get_clientsession(hass))
     else:
-        _LOGGER.debug("Local login with URL '%s'", somweb_url)
+        LOGGER.debug("Local login with URL '%s'", somweb_url)
         somweb_client = SomwebClient(somweb_url, username, password, aiohttp_client.async_get_clientsession(hass)
         )
 
     while not await somweb_client.async_is_alive():
-        _LOGGER.error(
+        LOGGER.error(
             "Device with UDI '%s' and URL '%s' not found on this network. Make sure that at least one of these values are set (if bot are set URL will override UDI)",
             somweb_udi,
             somweb_url
@@ -49,7 +49,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
 
     auth_result = await somweb_client.async_authenticate()
     if not auth_result.success:
-        _LOGGER.error("Failed to authenticate (udi=%s)", somweb_udi)
+        LOGGER.error("Failed to authenticate (udi=%s)", somweb_udi)
         return False
 
     # Store client for platforms to access
@@ -70,14 +70,14 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
 
 async def async_reload_entry(hass: HomeAssistant, entry: ConfigEntry) -> None:
     """Reload config entry."""
-    _LOGGER.info("Reloading somweb...")
+    LOGGER.info("Reloading somweb...")
     await async_unload_entry(hass, entry)
     await async_setup_entry(hass, entry)
 
 
 async def async_migrate_entry(hass, config_entry: ConfigEntry):
     """Migrate old entry."""
-    _LOGGER.debug("Migrating configuration from version %s.%s", config_entry.version, config_entry.minor_version)
+    LOGGER.debug("Migrating configuration from version %s.%s", config_entry.version, config_entry.minor_version)
 
     if config_entry.version == 1:
 
@@ -89,7 +89,7 @@ async def async_migrate_entry(hass, config_entry: ConfigEntry):
         # Set new config version
         hass.config_entries.async_update_entry(config_entry, data=new_data, minor_version=2, version=1)
 
-    _LOGGER.debug("Migration to configuration version %s.%s successful", config_entry.version, config_entry.minor_version)
+    LOGGER.debug("Migration to configuration version %s.%s successful", config_entry.version, config_entry.minor_version)
 
     return True
 
