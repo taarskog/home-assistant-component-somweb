@@ -13,6 +13,7 @@ api:
 websocket_api:
 system_health:
 config:
+isal:
 
 
 # https://www.home-assistant.io/integrations/logger/

@@ -1,14 +1,17 @@
 {
     "config": {
         "abort": {
-            "already_configured": "Enheten er allerede konfigurert"
+            "already_configured": "Enheten er allerede konfigurert",
+            "not_somweb_device": "Ikke en SOMweb-enhet",
+            "cannot_connect": "Tilkobling mislyktes"
         },
         "error": {
             "invalid_udi": "Ugyldig UDI (se bak p\u00e5 SOMweb enheten - m\u00e5 settes for sky)",
             "invalid_url": "Ugyldig URL (m\u00e5 settes for lokal aksess)",
             "cannot_connect": "Tilkobling mislyktes",
             "invalid_auth": "Ugyldig brukernavn/passord",
-            "unknown": "Uventet feil"
+            "unknown": "Uventet feil",
+            "not_somweb_device": "Oppdaget enhet er ikke en SOMweb-enhet"
         },
         "step": {
             "user": {
@@ -23,6 +26,14 @@
                     "mode": "N\u00e5 enheten via SOMweb skytjeneste eller direkte via lokal statisk IP eller DNS-navn",
                     "id": "SOMweb-enhetens ID funnet p\u00e5 enheten (obligatorisk for sky-modus)",
                     "url": "URL til SOMweb-enhet (obligatorisk for lokal modus)"
+                }
+            },
+            "discovery_confirm": {
+                "title": "Oppdaget SOMweb-enhet",
+                "description": "En SOMweb-enhet ble oppdaget p\u00e5 **{url}** med UDI **{udi}**.\n\nOppgi dine p\u00e5loggingsdetaljer for \u00e5 fullf\u00f8re oppsettet.",
+                "data": {
+                    "username": "Brukernavn",
+                    "password": "Passord"
                 }
             }
         }

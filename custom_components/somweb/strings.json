@@ -16,6 +16,14 @@
                     "username": "[%key:common::config_flow::data_description::username%]",
                     "password": "[%key:common::config_flow::data_description::password%]"
                 }
+            },
+            "discovery_confirm": {
+                "title": "Discovered SOMweb device",
+                "description": "A SOMweb device was discovered at **{url}** with UDI **{udi}**.\n\nPlease provide your credentials to complete setup.",
+                "data": {
+                    "username": "[%key:common::config_flow::data::username%]",
+                    "password": "[%key:common::config_flow::data::password%]"
+                }
             }
         },
         "error": {
@@ -23,10 +31,13 @@
             "invalid_url": "Invalid URL (must be set for local access)",
             "cannot_connect": "[%key:common::config_flow::error::cannot_connect%]",
             "invalid_auth": "[%key:common::config_flow::error::invalid_auth%]",
-            "unknown": "[%key:common::config_flow::error::unknown%]"
+            "unknown": "[%key:common::config_flow::error::unknown%]",
+            "not_somweb_device": "Discovered device is not a SOMweb device"
         },
         "abort": {
-            "already_configured": "[%key:common::config_flow::abort::already_configured_device%]"
+            "already_configured": "[%key:common::config_flow::abort::already_configured_device%]",
+            "not_somweb_device": "Not a SOMweb device",
+            "cannot_connect": "[%key:common::config_flow::abort::cannot_connect%]"
         }
     },
     "selector": {

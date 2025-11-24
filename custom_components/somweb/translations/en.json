@@ -1,14 +1,17 @@
 {
     "config": {
         "abort": {
-            "already_configured": "Device is already configured"
+            "already_configured": "Device is already configured",
+            "not_somweb_device": "Not a SOMweb device",
+            "cannot_connect": "Failed to connect"
         },
         "error": {
             "invalid_udi": "Invalid UDI (see back of SOMweb device - not required for local)",
             "invalid_url": "Invalid URL (must be set for local access)",
             "cannot_connect": "Failed to connect",
             "invalid_auth": "Invalid authentication",
-            "unknown": "Unexpected error"
+            "unknown": "Unexpected error",
+            "not_somweb_device": "Discovered device is not a SOMweb device"
         },
         "step": {
             "user": {
@@ -23,6 +26,14 @@
                     "mode": "Access device through SOMweb cloud services or directly using static IP or FQDN",
                     "id": "SOMweb device id found on the device (required for cloud mode)",
                     "url": "URL to SOMweb device (required for local mode)"
+                }
+            },
+            "discovery_confirm": {
+                "title": "Discovered SOMweb device",
+                "description": "A SOMweb device was discovered at **{url}** with UDI **{udi}**.\n\nPlease provide your credentials to complete setup.",
+                "data": {
+                    "username": "Username",
+                    "password": "Password"
                 }
             }
         }

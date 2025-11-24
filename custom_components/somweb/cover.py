@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from datetime import timedelta
-import datetime
 import logging
 
 from collections.abc import Iterable
@@ -25,11 +24,9 @@ import homeassistant.helpers.config_validation as cv
 from homeassistant.helpers.entity import Entity
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.device_registry import DeviceInfo
-from homeassistant.helpers.event import async_track_time_interval
 
 from .types import SomwebConfigEntry
 
-from custom_components.somweb import LOGGER
 
 from .const import DOMAIN, SCAN_INTERVAL_SECONDS
 
