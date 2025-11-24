@@ -82,7 +82,7 @@ async def validate_input(hass: HomeAssistant, data: dict[str, Any]) -> dict[str,
         somweb_client = SomwebClient(url, username, password, aiohttp_client.async_get_clientsession(hass))
     else:
         _LOGGER.debug("Cloud login with UDI '%s'", udi)
-        somweb_client = SomwebClient.createUsingUdi(udi, username, password, aiohttp_client.async_get_clientsession(hass))
+        somweb_client = SomwebClient.create_using_udi(udi, username, password, aiohttp_client.async_get_clientsession(hass))
 
     try:
         if not await somweb_client.async_is_alive():
