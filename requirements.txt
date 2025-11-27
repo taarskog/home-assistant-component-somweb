@@ -1,6 +1,1 @@
-colorlog==6.9.0
-homeassistant==2025.11.3
-pip>=21.0,<24.4
-ruff==0.4.8
-zlib-ng
-isal
+ruff==0.14.6

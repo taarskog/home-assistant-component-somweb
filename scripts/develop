@@ -4,5 +4,21 @@ set -e
 
 cd "$(dirname "$0")/.."
 
+# Create config dir if not present
+if [[ ! -d "${PWD}/config" ]]; then
+    mkdir -p "${PWD}/config"
+    hass --config "${PWD}/config" --script ensure_config
+fi
+
+# Create symlink to custom_components in config directory
+# This is the standard approach for HA custom component development
+if [[ ! -d "${PWD}/config/custom_components" ]]; then
+    mkdir -p "${PWD}/config/custom_components"
+fi
+
+if [[ ! -L "${PWD}/config/custom_components/somweb" ]]; then
+    ln -s "${PWD}/custom_components/somweb" "${PWD}/config/custom_components/somweb"
+fi
+
 # Start Home Assistant
-hass -c . --debug
+hass --config "${PWD}/config" --debug

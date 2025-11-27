@@ -10,20 +10,24 @@ __pycache__
 .coverage
 .vscode
 coverage.xml
-
+.ruff_cache
 
 # Home Assistant configuration
-.ha_run.lock
-.cloud
-.HA_VERSION
-.storage
-automations.yaml
-blueprints
-configuration.yaml
-deps
-home-assistant_v2*
-home-assistant.log*
-tts
-scenes.yaml
-scripts.yaml
-secrets.yaml
+config/*
+!config/configuration.yaml
+
+# Home Assistant configuration
+# .ha_run.lock
+# .cloud
+# .HA_VERSION
+# .storage
+# automations.yaml
+# blueprints
+# configuration.yaml
+# deps
+# home-assistant_v2*
+# home-assistant.log*
+# tts
+# scenes.yaml
+# scripts.yaml
+# secrets.yaml
