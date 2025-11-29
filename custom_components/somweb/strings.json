@@ -52,6 +52,26 @@
         "binary_sensor": {
             "firmware_update": {
                 "name": "Firmware update"
+            },
+            "remote_access": {
+                "name": "Remote access"
+            }
+        },
+        "sensor": {
+            "identifier": {
+                "name": "Identifier"
+            },
+            "wifi_signal_quality": {
+                "name": "WiFi signal quality"
+            },
+            "wifi_signal_level": {
+                "name": "WiFi signal level"
+            },
+            "ip_address": {
+                "name": "IP address"
+            },
+            "timezone": {
+                "name": "Timezone"
             }
         }
     }

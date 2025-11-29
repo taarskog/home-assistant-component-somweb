@@ -22,7 +22,7 @@ if TYPE_CHECKING:
 
     from .types import SomwebConfigEntry
 
-PLATFORMS = ["cover", "binary_sensor"]
+PLATFORMS = ["cover", "binary_sensor", "sensor"]
 
 LOGGER = logging.getLogger(__name__)
 

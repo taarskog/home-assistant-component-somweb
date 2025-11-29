@@ -50,6 +50,26 @@
         "binary_sensor": {
             "firmware_update": {
                 "name": "Fastvareoppdatering"
+            },
+            "remote_access": {
+                "name": "Ekstern tilgang"
+            }
+        },
+        "sensor": {
+            "identifier": {
+                "name": "Identifikator"
+            },
+            "wifi_signal_quality": {
+                "name": "WiFi signalkvalitet"
+            },
+            "wifi_signal_level": {
+                "name": "WiFi signalnivå"
+            },
+            "ip_address": {
+                "name": "IP-adresse"
+            },
+            "timezone": {
+                "name": "Tidssone"
             }
         }
     }
