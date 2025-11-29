@@ -1,0 +1,19 @@
+{
+  "exclude": [
+    "**/node_modules",
+    "**/__pycache__",
+    "**/.venv",
+    "config",
+    "tests"
+  ],
+  "extraPaths": [
+    "/usr/src/homeassistant",
+    "custom_components"
+  ],
+  "typeCheckingMode": "basic",
+  "useLibraryCodeForTypes": true,
+  "pythonVersion": "3.13",
+  "pythonPlatform": "Linux",
+  "venvPath": "${workspaceFolder}",
+  "venv": ".venv"
+}

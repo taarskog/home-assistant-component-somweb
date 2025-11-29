@@ -45,5 +45,12 @@
                 "cloud": "Sky"
             }
         }
+    },
+    "entity": {
+        "binary_sensor": {
+            "firmware_update": {
+                "name": "Fastvareoppdatering"
+            }
+        }
     }
 }

@@ -1,1 +1,2 @@
 ruff==0.14.6
+#homeassistant==2025.11.3

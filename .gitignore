@@ -12,6 +12,9 @@ __pycache__
 coverage.xml
 .ruff_cache
 
+# Virtual environment
+.venv
+
 # Home Assistant configuration
 config/*
 !config/configuration.yaml

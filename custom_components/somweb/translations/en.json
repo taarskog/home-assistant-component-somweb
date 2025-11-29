@@ -45,5 +45,12 @@
                 "cloud": "Cloud"
             }
         }
+    },
+    "entity": {
+        "binary_sensor": {
+            "firmware_update": {
+                "name": "Firmware update"
+            }
+        }
     }
 }

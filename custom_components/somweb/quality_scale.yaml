@@ -1,0 +1,53 @@
+# Integration Quality Scale tracking for SOMweb
+# See: https://developers.home-assistant.io/docs/core/integration-quality-scale/
+
+rules:
+  # Bronze tier
+  config_flow: done
+  test_before_setup: done
+  unique_config_entry: done
+  test_before_configure: done
+  docs_installation: done
+  docs_configuration: done
+  
+  # Silver tier
+  runtime_data: done
+  has_entity_name: done
+  appropriate_polling: done
+  entity_unavailable: done
+  reauthentication_flow: 
+    status: todo
+    comment: Not yet implemented - device doesn't support token expiry
+  
+  # Gold tier
+  discovery: done
+  entity_descriptions: 
+    status: in_progress
+    comment: Binary sensor uses translation_key, cover entities need entity descriptions
+  entity_translations: 
+    status: in_progress
+    comment: Partial - binary sensor has translation, covers need it
+  reconfiguration_flow: done
+  diagnostics: 
+    status: todo
+    comment: Not yet implemented
+  test_coverage: 
+    status: in_progress
+    comment: Config flow fully tested, entity tests needed
+  
+  # Platinum tier
+  common_modules:
+    status: done
+    comment: Using DataUpdateCoordinator and base entity class
+  strict_typing:
+    status: in_progress
+    comment: Most code typed, some entity methods need refinement
+  async_dependency:
+    status: done
+    comment: Fully async using aiohttp
+  docs_actions:
+    status: exempt
+    comment: Integration doesn't expose custom actions
+  entity_categories:
+    status: done
+    comment: Firmware update sensor uses UPDATE device class

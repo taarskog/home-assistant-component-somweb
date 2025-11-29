@@ -47,7 +47,7 @@ Platform | Description
 
 [![Open your Home Assistant instance and start setting up a new integration.](https://my.home-assistant.io/badges/config_flow_start.svg)](https://my.home-assistant.io/redirect/config_flow_start/?domain=somweb)
 
-or in the HA UI go to "Configuration" -> "Integrations" click "+" and search for "Somweb".
+or in the HA UI go to "Configuration" -> "Integrations" click "+" and search for "SOMweb".
 
 **Fill** inn the fields specifying UDI or URL based on the chosen access mode.
 

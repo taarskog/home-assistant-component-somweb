@@ -3,6 +3,7 @@
 DOMAIN = "somweb"
 
 SCAN_INTERVAL_SECONDS = 30
+FIRMWARE_CHECK_HOURS = 12
 
 MODE_LOCAL = "local"
 MODE_CLOUD = "cloud"
