@@ -359,6 +359,9 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                 # Reset url when doing cloud - we'll use UDI value for connecting
                 user_input[CONF_URL] = None
 
+            # TODO: Reconfigure and reload does not work properly yet as entities are
+            #       not updated when going to/from admin user
+
             # Update the config entry
             return self.async_update_reload_and_abort(
                 config_entry,
